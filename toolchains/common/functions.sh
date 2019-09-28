@@ -48,8 +48,10 @@ __do_http_fetch () {
 		fi
 	fi
 	$3 "$fname"
-	cd "$1"*/
-	do_patch
+	if [ -d "$1"*/ ]; then
+		cd "$1"*/
+		do_patch
+	fi
 }
 
 __do_configure () {
