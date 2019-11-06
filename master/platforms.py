@@ -93,6 +93,30 @@ class Platform:
 
 platforms = []
 
+def debian_armhf():
+    platform = Platform("debian-armhf")
+    platform.env["CXX"] = "ccache arm-linux-gnueabihf-g++"
+    platform.configureargs.append("--host=arm-linux-gnueabihf")
+    platform.built_files = {
+        builds.ScummVMBuild: [ "scummvm" ],
+        builds.ScummVMToolsBuild: [
+            "construct_mohawk",
+            "create_sjisfnt",
+            "decine",
+            #"decompile", # Decompiler currently not built - BOOST library not present
+            "degob",
+            "dekyra",
+            "descumm",
+            "desword2",
+            "extract_mohawk",
+            "gob_loadcalc",
+            #"scummvm-tools", # GUI tools currently not built - WxWidgets library not present
+            "scummvm-tools-cli"
+        ]
+    }
+    platforms.append(platform)
+debian_armhf()
+
 def debian_x86_64():
     platform = Platform("debian-x86_64")
     platform.env["CXX"] = "ccache g++"
@@ -204,30 +228,6 @@ def psp():
     }
     platforms.append(platform)
 psp()
-
-def raspberrypi():
-    platform = Platform("raspberrypi")
-    platform.env["CXX"] = "ccache arm-linux-gnueabihf-g++"
-    platform.configureargs.append("--host=raspberrypi")
-    platform.built_files = {
-        builds.ScummVMBuild: [ "scummvm" ],
-        builds.ScummVMToolsBuild: [
-            "construct_mohawk",
-            "create_sjisfnt",
-            "decine",
-            #"decompile", # Decompiler currently not built - BOOST library not present
-            "degob",
-            "dekyra",
-            "descumm",
-            "desword2",
-            "extract_mohawk",
-            "gob_loadcalc",
-            #"scummvm-tools", # GUI tools currently not built - WxWidgets library not present
-            "scummvm-tools-cli"
-        ]
-    }
-    platforms.append(platform)
-raspberrypi()
 
 def vita():
     platform = Platform("vita")

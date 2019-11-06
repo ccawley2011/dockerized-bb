@@ -24,9 +24,6 @@ RUN dpkg --add-architecture armhf && \
 		&& \
 	rm -rf /var/lib/apt/lists/*
 
-# Raspberry PI librairies are mixed with original Debian
-ENV RPI_ROOT=/
-
 ENV HOST=arm-linux-gnueabihf
 
 ENV \
