@@ -33,10 +33,4 @@ mv sources ${ANDROID_NDK_HOME}/sources
 mkdir -p ${ANDROID_NDK_HOME}/platforms/android-${PLATFORM_API_VERSION}/
 ln -s ${ANDROID_NDK_HOME}/${PLATFORM_ARCH}/sysroot ${ANDROID_NDK_HOME}/platforms/android-${PLATFORM_API_VERSION}/arch-${PLATFORM_ARCH}
 
-# android-23 is needed separately because the code is compiled for API 9, but
-# the packaging is done for API 23, apparently for some vague manifest-related
-# reason in commit a32c53f936f8b3fbf90d016d3c07de62c96798b1
-mkdir -p ${ANDROID_NDK_HOME}/platforms/android-23/
-mv platforms/android-23/arch-${PLATFORM_ARCH} ${ANDROID_NDK_HOME}/platforms/android-23/arch-${PLATFORM_ARCH}
-
 do_clean_bdir

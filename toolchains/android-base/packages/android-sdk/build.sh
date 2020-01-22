@@ -25,9 +25,9 @@ rm -rf \
 
 # yes | sdkmanager --licenses
 
-# android-23 is needed because the code is compiled for API 14, but the
-# packaging is done for API 23, apparently for some vague manifest-related
+# android-28 is needed because the code is compiled for API 14, but the
+# packaging is done for API 28, apparently for some vague manifest-related
 # reason in commit a32c53f936f8b3fbf90d016d3c07de62c96798b1
-yes | sdkmanager "platform-tools" "build-tools;25.0.3" "platforms;android-23"
+yes | sdkmanager "platform-tools" "build-tools;25.0.3" "platforms;android-28"
 
 do_clean_bdir
