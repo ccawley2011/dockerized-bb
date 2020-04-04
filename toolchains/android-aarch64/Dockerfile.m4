@@ -40,9 +40,9 @@ ENV \
 
 helpers_package(libpng1.6)
 
-RUN lib-helpers/packages/libjpeg-turbo/build.sh
+helpers_package(libjpeg-turbo)
 
-RUN lib-helpers/packages/faad2/build.sh
+helpers_package(faad2)
 
 RUN lib-helpers/packages/libmad/build.sh
 
@@ -60,6 +60,9 @@ RUN lib-helpers/packages/a52dec/build.sh
 
 # helpers_package(curl, --without-ssl)
 
-RUN lib-helpers/packages/freetype/build.sh
+helpers_package(freetype)
 
 helpers_package(fluidsynth-lite)
+
+# HACK: The zlib library provided by the toolchain does not have a .pc file
+RUN sed -i '/zlib/d' ${PREFIX}/lib/pkgconfig/*.pc

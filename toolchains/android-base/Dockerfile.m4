@@ -7,7 +7,8 @@ USER root
 
 WORKDIR /usr/src
 
-RUN apt-get update && \
+RUN echo "deb-src http://deb.debian.org/debian/ buster main" >> /etc/apt/sources.list && \
+	apt-get update && \
 	mkdir -p /usr/share/man/man1 && \
 	DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
 		ant \
