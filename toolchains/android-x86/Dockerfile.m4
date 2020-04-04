@@ -15,26 +15,19 @@ RUN lib-helpers/prepare.sh
 
 COPY --from=helpers /lib-helpers/functions.sh lib-helpers/
 
-# 9 is the minimum supported API version required by ScummVM.
-RUN PLATFORM_API_VERSION=9 \
-	PLATFORM_ARCH=x86 \
-	PLATFORM_PREFIX=x86-4.9 \
-	lib-helpers/packages/android-ndk/build.sh
-
-ENV HOST=i686-linux-android PREFIX=${ANDROID_NDK_HOME}/x86/i686-linux-android
+ENV HOST=i686-linux-android PREFIX=${ANDROID_NDK_HOME}/libs/i686-linux-android
 
 # We add PATH here for *-config and platform specific binaries
 ENV \
-	def_binaries(`${HOST}-', `ar, as, c++filt, ld, nm, objcopy, objdump, ranlib, readelf, strings, strip') \
-	def_binaries(`${HOST}-', `clang, cpp, c++') \
-	CC=${HOST}-clang \
-# clang++ is a wrapper script which sets up the Android API version correctly
-	CXX=${HOST}-clang++ \
+	def_binaries(`${HOST}-', `ar, as, c++filt, dwp, ld, nm, objcopy, objdump, ranlib, readelf, strings, strip') \
+	CC=i686-linux-android16-clang \
+# i686-linux-android16-clang++ is a wrapper script which sets up the Android API version correctly
+	CXX=i686-linux-android16-clang++ \
 	def_aclocal(`${PREFIX}') \
 	def_pkg_config(`${PREFIX}') \
-	CPPFLAGS="-isystem ${ANDROID_NDK_HOME}/x86/${HOST}/include" \
-	LDFLAGS="-L${ANDROID_NDK_HOME}/x86/${HOST}/lib" \
-        PATH=$PATH:${ANDROID_NDK_HOME}/x86/bin:${ANDROID_NDK_HOME}/x86/${HOST}/bin
+	CPPFLAGS="-isystem ${PREFIX}/include" \
+	LDFLAGS="-L${PREFIX}/lib" \
+        PATH=$PATH:${ANDROID_NDK_ROOT}/toolchains/llvm/prebuilt/linux-x86_64/bin:${PREFIX}/bin
 
 # Android comes with a suitable zlib already
 
