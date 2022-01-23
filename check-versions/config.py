@@ -270,6 +270,11 @@ VERSIONS = {
     ('./toolchains/dreamcast/packages/toolchain-sh4/build.sh', 'GCC'): 'ignore',
     ('./toolchains/dreamcast/packages/toolchain-sh4/build.sh', 'NEWLIB'): 'ignore',
 
+    ('./toolchains/emscripten/packages/toolchain/build.sh', 'EMSDK'): {
+        'check': 'git tag',
+        'repository': 'https://github.com/emscripten-core/emsdk.git',
+    },
+
     # GCW0 packages (except toolchain) are set by old firmware
     ('./toolchains/gcw0/packages/alsa-lib/build.sh', 'ALSA_LIB'): 'ignore',
     ('./toolchains/gcw0/packages/etna_viv/build.sh', 'ETNA_VIV'): 'ignore',
