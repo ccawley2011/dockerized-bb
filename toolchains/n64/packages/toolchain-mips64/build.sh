@@ -1,8 +1,10 @@
 #! /bin/sh
 
 # These versions are the ones used on the old buildbot
-BINUTILS_VERSION=2.19.1
-GCC_VERSION=4.4.2
+# GCC has been upgraded from 4.4.2 to 4.9.4 to support C++11
+# Binutils has been upgraded from 2.19.1 to 2.25 to support DWARF v4
+BINUTILS_VERSION=2.25
+GCC_VERSION=4.9.4
 NEWLIB_VERSION=1.17.0
 
 # This package is inspired by dc-chain scripts for KallistiOS. Credits go to them.
@@ -32,7 +34,6 @@ cd ..
 
 # GCC...
 do_http_fetch gcc "https://ftp.gnu.org/gnu/gcc/gcc-${GCC_VERSION}/gcc-${GCC_VERSION}.tar.bz2" 'tar xjf'
-do_patch gcc
 
 # Do off tree build
 GCC_DIR=$(pwd)
