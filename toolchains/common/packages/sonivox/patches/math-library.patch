@@ -1,0 +1,17 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 6749610..4295c6a 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -49,7 +49,11 @@ endif()
+ 
+ if (UNIX AND NOT APPLE)
+     find_library(MATH_LIBRARY m)
+-    message(STATUS "Math library: ${MATH_LIBRARY}")
++    IF (MATH_LIBRARY)
++        message(STATUS "Math library: ${MATH_LIBRARY}")
++    else()
++        set(MATH_LIBRARY "")
++    endif()
+ else()
+     set(MATH_LIBRARY "")
+ endif()

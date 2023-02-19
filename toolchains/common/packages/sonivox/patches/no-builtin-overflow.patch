@@ -1,0 +1,23 @@
+diff --git a/arm-wt-22k/lib_src/eas_smf.c b/arm-wt-22k/lib_src/eas_smf.c
+index 4f8db9d..e641755 100644
+--- a/arm-wt-22k/lib_src/eas_smf.c
++++ b/arm-wt-22k/lib_src/eas_smf.c
+@@ -879,7 +879,9 @@ static EAS_RESULT SMF_ParseMetaEvent (S_EAS_DATA *pEASData, S_SMF_DATA *pSMFData
+             temp = (temp << 8) | c;
+         }
+         {
+-            // pSMFData->tickConv = (EAS_U16) (((temp * 1024) / pSMFData->ppqn + 500) / 1000);
++#if 1
++            pSMFData->tickConv = (EAS_U16) (((temp * 1024) / pSMFData->ppqn + 500) / 1000);
++#else
+             uint64_t temp64;
+             if (__builtin_mul_overflow(temp, 1024u, &temp64) ||
+                     pSMFData->ppqn == 0 ||
+@@ -891,6 +893,7 @@ static EAS_RESULT SMF_ParseMetaEvent (S_EAS_DATA *pEASData, S_SMF_DATA *pSMFData
+             } else {
+                 pSMFData->tickConv = (EAS_U16) temp64;
+             }
++#endif
+         }
+         pSMFData->flags |= SMF_FLAGS_HAS_TEMPO;
+     }

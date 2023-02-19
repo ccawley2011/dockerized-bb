@@ -96,6 +96,8 @@ helpers_package(a52dec)
 
 helpers_package(fluidlite, -DCMAKE_TOOLCHAIN_FILE=$GCCSDK_INSTALL_ENV/toolchain-riscos.cmake)
 
+helpers_package(sonivox, -DCMAKE_TOOLCHAIN_FILE=$GCCSDK_INSTALL_ENV/toolchain-riscos.cmake)
+
 helpers_package(freetype)
 
 helpers_package(fribidi)
