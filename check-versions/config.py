@@ -309,6 +309,13 @@ VERSIONS = {
         'reference': 'latest',
     },
 
+    ('./toolchains/djgpp/packages/toolchain/build.sh', 'BUILD_DJGPP'): {
+        'check': 'git commit',
+        'repository': 'https://github.com/andrewwutw/build-djgpp.git',
+        'branch': 'master',
+    },
+    ('./toolchains/djgpp/packages/toolchain/build.sh', 'GCC'): 'ignore',
+
     ('./toolchains/dreamcast/packages/libronin/build.sh', 'LIBRONIN'): {
         'check': 'git tag',
         'repository': 'https://bitbucket.org/ihi/libronin.git',

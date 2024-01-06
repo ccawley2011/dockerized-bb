@@ -1,0 +1,12 @@
+diff --git a/misc.h b/misc.h
+index 1ae4d2e..d98a48b 100644
+--- a/misc.h
++++ b/misc.h
+@@ -37,6 +37,7 @@
+ #ifndef  _LOW_ACCURACY_
+ /* 64 bit multiply */
+ 
++#include <machine/endian.h>
+ #if !(defined WIN32 && defined WINCE)
+ #include <sys/types.h>
+ #endif
